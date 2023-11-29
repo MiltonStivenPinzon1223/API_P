@@ -46,16 +46,17 @@ if(count(array_filter($rutasArray))<2){
                 return;
             }
             break;
-        case 'categories':
+        case 'type_vehicles':
             switch ($method) {
                 case 'GET':
-                    $category = new CategoryController($method, $complement, 0);
+                    $type = new TypeVehicleController($method, $complement, 0);
+
                 break;
                 case 'POST':
-                    $category = new CategoryController($method, $complement, $_POST);
+                    $type = new TypeVehicleController($method, $complement, $_POST);
                 break;
                 case 'PUT':
-                    $category = new CategoryController($method, $complement, $_POST);
+                    $type = new TypeVehicleController($method, $complement, $_POST);
                 break;
                 default:
                     $json = array(
@@ -65,91 +66,7 @@ if(count(array_filter($rutasArray))<2){
                     return;
                 break;
             }
-            $category->index();
-        break;
-        case 'clothes':
-            switch ($method) {
-                case 'GET':
-                    $clothe = new ClotheController($method, $complement, 0);
-                break;
-                case 'POST':
-                    $clothe = new ClotheController($method, $complement, $_POST);
-                break;
-                case 'PUT':
-                    $clothe = new ClotheController($method, $complement, $_POST);
-                break;
-                default:
-                    $json = array(
-                        "ruta"=>"not found"
-                    );
-                    echo json_encode($json, true);
-                    return;
-                break;
-            }
-            $clothe->index();
-        break;
-        case 'payment_method':
-            switch ($method) {
-                case 'GET':
-                    $paymentMethod = new PaymentMethodController($method, $complement, 0);
-                break;
-                case 'POST':
-                    $paymentMethod = new PaymentMethodController($method, $complement, $_POST);
-                break;
-                case 'PUT':
-                    $paymentMethod = new PaymentMethodController($method, $complement, $_POST);
-                break;
-                default:
-                    $json = array(
-                        "ruta"=>"not found"
-                    );
-                    echo json_encode($json, true);
-                    return;
-                break;
-            }
-            $paymentMethod->index();
-        break;
-        case 'bills':
-            switch ($method) {
-                case 'GET':
-                    $bill = new BillController($method, $complement, 0);
-                break;
-                case 'POST':
-                    $bill = new BillController($method, $complement, $_POST);
-                break;
-                case 'PUT':
-                    $bill = new BillController($method, $complement, $_POST);
-                break;
-                default:
-                    $json = array(
-                        "ruta"=>"not found"
-                    );
-                    echo json_encode($json, true);
-                    return;
-                break;
-            }
-            $bill->index();
-        break;
-        case 'sales':
-            switch ($method) {
-                case 'GET':
-                    $sale = new SaleController($method, $complement, 0);
-                break;
-                case 'POST':
-                    $sale = new SaleController($method, $complement, $_POST);
-                break;
-                case 'PUT':
-                    $sale = new SaleController($method, $complement, $_POST);
-                break;
-                default:
-                    $json = array(
-                        "ruta"=>"not found"
-                    );
-                    echo json_encode($json, true);
-                    return;
-                break;
-            }
-            $sale->index();
+            $type->index();
         break;
         default:
             $json = array(

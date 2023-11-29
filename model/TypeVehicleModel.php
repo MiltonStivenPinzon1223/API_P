@@ -2,37 +2,37 @@
 
 require_once "ConDB.php";
 
-class CategoryModel {
+class TypeVehicleModel {
 
     public static function all(){
-        $query = "SELECT * FROM categories";
+        $query = "SELECT * FROM type_vehicles";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
-        $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $categories;
+        $types = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $types;
     }
 
     public static function find($id){
-        $query = "SELECT * FROM categories WHERE cat_id = $id";
+        $query = "SELECT * FROM type_vehicles WHERE tyve_id = $id";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
-        $category = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $category;
+        $type = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $type;
     }
 
     public static function create($data){
-        $query = "INSERT INTO `categories`( `cat_category`) VALUES ('".$data['cat_name']."')";
+        $query = "INSERT INTO `type_vehicles`( `tyve_type`) VALUES ('".$data['tyve_type']."')";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
-        $message = array("Category created successfully");
+        $message = array("type created successfully");
         return $message;
     }
 
     public static function update($id,$data){
-        $query = "UPDATE `categories` SET `cat_category`='".$data['cat_name']."' WHERE cat_id = $id";
+        $query = "UPDATE `type_vehicles` SET `tyve_type`='".$data['tyve_type']."' WHERE tyve_id = $id";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
-        $message = array("Category updated successfully");
+        $message = array("type updated successfully");
         return $message;
     }
 }

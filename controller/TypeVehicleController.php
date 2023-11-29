@@ -1,8 +1,8 @@
 <?php
 
-class CategoryController{
+class TypeVehicleController{
     private $_method; //get, post, put.
-    private $_complement; //get category 1 o 2.
+    private $_complement; //get type 1 o 2.
     private $_data; // datos a insertar o actualizar
 
     function __construct($method,$complement,$data){
@@ -16,32 +16,32 @@ class CategoryController{
             case "GET":
                 switch($this->_complement){
                     case 0:
-                        $category = CategoryModel::all(0);
-                        $json = $category;
+                        $type = TypeVehicleModel::all(0);
+                        $json = $type;
                         echo json_encode($json);
                         return;
                     default:
-                        $category = CategoryModel::find($this->_complement);
-                        if ($category==null)
+                        $type = TypeVehicleModel::find($this->_complement);
+                        if ($type==null)
                             $json = array(
-                                "response: "=>"Category not found"
+                                "response: "=>"type not found"
                             );
                         else
-                            $json = $category;
+                            $json = $type;
                         echo json_encode($json);
                         return;
                 }
             case "POST":
-                $createcategory = CategoryModel::create($this->_data);
+                $createtype = TypeVehicleModel::create($this->_data);
                 $json = array(
-                    "response: "=>$createcategory
+                    "response: "=>$createtype
                 );
                 echo json_encode($json,true);
                 return;
             case "PUT":
-                $createcategory = CategoryModel::update($this->_complement,$this->_data);
+                $createtype = TypeVehicleModel::update($this->_complement,$this->_data);
                 $json = array(
-                    "response: "=>$createcategory
+                    "response: "=>$createtype
                 );
                 echo json_encode($json,true);
                 return;
