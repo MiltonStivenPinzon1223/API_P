@@ -68,6 +68,69 @@ if(count(array_filter($rutasArray))<2){
             }
             $type->index();
         break;
+        case 'models':
+            switch ($method) {
+                case 'GET':
+                    $model = new ModelController($method, $complement, 0);
+
+                break;
+                case 'POST':
+                    $model = new ModelController($method, $complement, $_POST);
+                break;
+                case 'PUT':
+                    $model = new ModelController($method, $complement, $_POST);
+                break;
+                default:
+                    $json = array(
+                        "ruta"=>"not found"
+                    );
+                    echo json_encode($json, true);
+                    return;
+                break;
+            }
+            $model->index();
+        break;
+        case 'vehicles':
+            switch ($method) {
+                case 'GET':
+                    $vehicle = new VehicleController($method, $complement, 0);
+
+                break;
+                case 'POST':
+                    $vehicle = new VehicleController($method, $complement, $_POST);
+                break;
+                case 'PUT':
+                    $vehicle = new VehicleController($method, $complement, $_POST);
+                break;
+                default:
+                    $json = array(
+                        "ruta"=>"not found"
+                    );
+                    echo json_encode($json, true);
+                    return;
+                break;
+            }
+            $vehicle->index();
+        break;
+        case 'registrations':
+            switch ($method) {
+                case 'GET':
+                    $registration = new RegistrationController($method, $complement, 0);
+
+                break;
+                case 'POST':
+                    $registration = new RegistrationController($method, $complement, $_POST);
+                break;
+                default:
+                    $json = array(
+                        "ruta"=>"not found"
+                    );
+                    echo json_encode($json, true);
+                    return;
+                break;
+            }
+            $registration->index();
+        break;
         default:
             $json = array(
                 "ruta"=>"ruta no encontrada"

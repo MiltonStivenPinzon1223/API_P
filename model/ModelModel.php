@@ -2,14 +2,14 @@
 
 require_once "ConDB.php";
 
-class ModeleModel {
+class ModelModel {
 
     public static function all(){
         $query = "SELECT * FROM models";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
         $models = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $models;
+        return $models; 
     }
 
     public static function find($id){
@@ -21,7 +21,7 @@ class ModeleModel {
     }
 
     public static function create($data){
-        $query = "INSERT INTO `models`( `tyve_model`) VALUES ('".$data['tyve_model']."')";
+        $query = "INSERT INTO `models`(`mod_model`, `tyve_id`) VALUES ('".$data['mod_model']."', '".$data['tyve_id']."')";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
         $message = array("model created successfully");
@@ -29,7 +29,7 @@ class ModeleModel {
     }
 
     public static function update($id,$data){
-        $query = "UPDATE `models` SET `tyve_model`='".$data['tyve_model']."' WHERE tyve_id = $id";
+        $query = "UPDATE `models` SET `mod_model`='".$data['mod_model']."',`tyve_id`='".$data['tyve_id']."' WHERE mod_id = $id";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();
         $message = array("model updated successfully");

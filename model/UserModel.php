@@ -16,7 +16,7 @@ class UserModel{
         if($cantMail==0){
             $date = date("Y-m-d");
             $status = "1";
-            $query = "INSERT INTO `users`(`use_name`, `use_email`, `use_password`, `use_datecreate`, `use_key`, `use_status`) VALUES ('".$data['use_name']."','".$data['use_email']."','".$data['use_pass']."','".$date."','".$data['use_key']."','".$status."')";
+            $query = "INSERT INTO `users`(`use_name`, `use_email`, `use_password`, `use_datecreate`, `use_key`, `use_identifier`, `use_status`, `rol_id`) VALUES ('".$data['use_name']."','".$data['use_email']."','".$data['use_password']."','".$date."','".$data['use_key']."','".$data['use_identifier']."','".$status."', '2')";
             // return $query;
             $statement = Connection::connection()->prepare($query);
             $message = $statement-> execute() ? array("ok") : Connection::connection()->errorInfo();
@@ -63,9 +63,8 @@ class UserModel{
         }
     }
 
-
     static public function update($id,$data){
-        $pass = md5($data['use_pass']);
+        $pass = md5($data['use_password']);
         $query = "UPDATE users SET use_email='".$data['use_email']."',use_password='".$pass."' WHERE use_id = ".$id.";";
         $statement = Connection::connection()->prepare($query);
         $statement->execute();

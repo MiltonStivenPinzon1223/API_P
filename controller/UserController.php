@@ -65,14 +65,14 @@ class UserController{
         $trimmed_data="";
         //var_dump($this->_data);
         $pattern = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,15}$/';
-        if (preg_match($pattern, $this->_data['use_pass'])) {
+        if (preg_match($pattern, $this->_data['use_password'])) {
             if(($this->_data !="") || (!empty($this->_data))){
                 $trimmed_data = array_map('trim', $this->_data);
-                $trimmed_data['use_pass'] = md5($trimmed_data['use_pass']);
+                $trimmed_data['use_password'] = md5($trimmed_data['use_password']);
                 //salting
                 $identifier = str_replace("$", "y78", crypt($trimmed_data['use_email'], 'ser3478'));
-                $key = str_replace("$", "ERT", crypt($trimmed_data['use_pass'], '$uniempresarial2024'));
-                $trimmed_data['us_identifier'] = $identifier;
+                $key = str_replace("$", "ERT", crypt($trimmed_data['use_password'], '$uniempresarial2024'));
+                $trimmed_data['use_identifier'] = $identifier;
                 $trimmed_data['use_key'] = $key;
                 return $trimmed_data;
             }
